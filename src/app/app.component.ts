@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { trigger, state, style, transition, animate, stagger, query } from '@angular/animations';
 
 interface Product {
@@ -19,7 +18,7 @@ interface Project {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule],
+  imports: [CommonModule],
   animations: [
     trigger('fadeInUp', [
       state('in', style({opacity: 1, transform: 'translateY(0)'})),
