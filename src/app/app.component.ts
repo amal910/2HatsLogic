@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate, stagger, query } from '@angular/animations';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 interface Product {
   title: string;
@@ -158,7 +159,15 @@ export class AppComponent implements OnInit {
     projectsVisible = false;
     footerVisible = false;
 
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
     ngOnInit() {
+
+      if (isPlatformBrowser(this.platformId)) {
+        if ('IntersectionObserver' in window) {
+          // safe to use IntersectionObserver here
+        }
+      }
       // Initialize intersection observers for scroll animations
       setTimeout(() => {
         this.setupIntersectionObservers();
